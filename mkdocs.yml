@@ -1,0 +1,49 @@
+site_name: Template
+site_url: https://example.com
+theme:
+  name: material
+  
+  
+  font: 
+    text: "AR One Sans"
+    code: "Fira Code"
+  logo: images/jor-edu.jpg
+  features:
+    - navigation.footer
+    - content.code.copy
+  
+  palette:
+    # Darm Mode
+    - scheme: slate
+      primary: green
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      # Light Mode
+    - scheme: default
+      primary: blue
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/john-o-raw-38831a21
+    - icon: fontawesome/brands/github
+      link: https://jor-donegal.github.io/johnoraw.education/
+
+copyright: Copyright © 2025, John O'Raw
