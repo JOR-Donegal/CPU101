@@ -1,4 +1,4 @@
-site_name: Template
+site_name: Background to General Computing
 site_url: https://example.com
 theme:
   name: material
@@ -38,6 +38,8 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.tilde
 
 extra:
   social:
