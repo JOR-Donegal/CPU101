@@ -10,7 +10,7 @@ Boolean expressions are normally true or false, or on and off, or 1 and 0, all a
 Boolean operators let us look at the relationship between the state of these variables and an output. Let’s go with variable C for an output.  We know that if A is on (true) and B is on (true) then the machine is safe and C should be equal to on (true) But look at all the possible cases that give rise to an output. We call this a truth table; it allows us to look at all possible inputs and have a predictable and desired output. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig1.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig1.jpg">
 <figcaption>Fig 1. An AND gate, truth table and symbol.</figcaption>
 </figure>
 
@@ -23,7 +23,7 @@ The second Boolean operator we will consider is the OR gate, Fig 2. In this case
 The output is 0 (false) only when both inputs are 0 (false).
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig2.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig2.jpg">
 <figcaption>Fig 2. An OR gate, truth table and symbol.</figcaption>
 </figure>
 
@@ -32,7 +32,7 @@ In electronics, we may sometimes buffer an input from an output. This is done fo
 The triangle symbol on its own means it’s just a buffer, it does not change the Boolean value at its input to anything different at the output.
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig3.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig3.jpg">
 <figcaption>Fig 3. A buffer, truth table and symbol.</figcaption>
 </figure>
 
@@ -41,21 +41,21 @@ Sometimes we need a logic function which just inverts a Boolean variable. For ex
 We can signify this in a few different ways. We can use any standard logic symbol with a circle on the output. The circle denotes an inversion.  Alternatively, we can put a bar over the variable symbol; a bar over A means NOT A. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig4.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig4.jpg">
 <figcaption>Fig 4. An inverter, truth table and symbol.</figcaption>
 </figure>
 
 We can apply the same sort of approach to other logic gates. For example a NOT AND gate is a NAND gate. It has the same truth table as an AND gate, except with the output inverted. Similarly a NOT OR gate is called a NOR gate.
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig5.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig5.jpg">
 <figcaption>Fig 5. NOR and NAND, truth table and symbol.</figcaption>
 </figure>
 
 The final Boolean operator we need to look at is the exclusive OR (XOR) gate. This is a special case or the OR gate where the output is 1 if either input is 1, but is 0 is all inputs are 1. Obviously we can also have an XNOR, which is an XOR with the output inverted. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig6.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig6.jpg">
 <figcaption>Fig 6. XOR and XNOR, truth table and symbol.</figcaption>
 </figure>
 
@@ -66,7 +66,7 @@ By the 1960’s we had integrated these transistors into single chunks of silico
 For example, a 7400 was a package with 14 legs which had four NAND gates inside.
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig7.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig7.jpg">
 <figcaption>Fig 7. 7400 TTL.</figcaption>
 </figure>
 

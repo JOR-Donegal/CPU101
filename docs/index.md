@@ -14,11 +14,11 @@ The ubiquity of computers is something that only emerged in the past generation,
 
 In these notes, I want to compensate for the misunderstanding many people have technology. Younger people are often referred to as _digital natives_, they've grown up with technology. But they've grown up as operators of technology. As that technology gets more complex, the level of abstraction that somebody interfaces with is further away from how things actually work inside the box. In the next few pages of notes, I want to go back and work my way forward from the kind of electronic components that have been available since around 1947, as far as (conceptually) how to build a CPU. This knowledge is a prerequisite for anyone working with computer hardware or with low level computer languages or drivers.
 
-# Recommended Book
+## Recommended Book
 I am going to make an unusual recommendation here. If PC hardware is new to you I am going to suggest a book for practitioners of computer build and repair rather than the sort of book used by academics. __Upgrading and Repairing PCs__ by Scott Mueller has been around for years and is relatively easy reading, if perhaps getting outdated.  
 
 
-
+## References
 [1] M. Guarnieri, "The Roots of Automation Before Mechatronics [Historical]," IEEE Industrial Electronics Magazine, vol. 4, no. 2, pp. 42-43, 2010, doi: 10.1109/MIE.2010.936772.
 [2] G. R. Jessop, "Developments in thermionic valves during the last sixty years," Journal of the Institution of Electronic and Radio Engineers, vol. 57, no. 2, pp. 81-90, 1987, doi: 10.1049/jiere.1987.0034.
 [3] "The transistor — A new amplifier," Electrical Engineering, vol. 67, no. 8, pp. 740-740, 1948, doi: 10.1109/EE.1948.6444253.
