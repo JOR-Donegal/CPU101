@@ -21,7 +21,7 @@ We know that we could store bits in a register, so building a memory element for
 
 How do we scale that up to make a useful quantity of memory?
 
-When we design memory, we tend to do so as a grid of rows and columns. Imagine a spreadsheet where we lay out the memory. We have a 4 bit computer, each column could be one 4 bit nibble and we can populate the grid with ones and zeros.
+When we design memory, we tend to do so as a grid of _rows_ and _columns_. Imagine a spreadsheet where we lay out the memory. We have a 4 bit computer, each column could be one 4 bit nibble and we can populate the grid with ones and zeros.
 
 <figure>
 <img src = "https://jor-donegal.github.io/CPU101/images/table4.jpg">

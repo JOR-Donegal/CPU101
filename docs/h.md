@@ -1,44 +1,83 @@
-# Alternative Processor Paradigms
-So far on this module we have looked at the technologies used in workstations, servers and laptops. 
-For the past forty years, this market has been controlled by Intel and a few additional players like AMD. 
+# Enhancing the CPU
 
-_Reduced Instruction Set Computers_ (RISC) is a processor design using simple hardware and highly optimized instruction sets.
-They are faster per instructions, physically smaller and simpler and as a result, more power efficient. 
-## RISC
-When we look into the actual execution of instructions in a processor, we can identify empirically (by experimentation and real data) which instructions are used most, which take most processor time. A processor is a number cruncher, so you would guess that arithmetic logic instructions would be executed most? 
+Even after 50 years, the principle of operation for an Intel or AMD CPU should be recognisable from the simple descriptions in these notes up to now. To finish this technology introduction, I want to talk about some of the enhancements that have been used to speed up and generally improve the performance of processors.
 
-Wrong! 
+And then the law of unintended consequences kicks in. In recent years, some of the most intractable vulnerabilities in PC hardware were introduced by these enhancements.
 
-A processor spends more time shifting data in and out of memory than doing anything else. The second most common thing for it to do is to control the flow of program execution. Optimization techniques such as _pipelining_ and _caching_ are intended to optimize this.  
+## Floating Point Calculations
+As we have described a CPU, it is a general purpose machine for calculating numbers and manipulating numbers which could represent things like characters. You should have covered _ASCII_ and _Unicode_ in one of my other modules, if you don’t remember, do an internet search on those terms now. However the registers in a CPU are of a fixed size; in modern processors either 32 or 64 bits wide. That means the smallest and biggest numbers we can describe are limited by the size of the register. 
 
-Reduced Instruction Set or RISC processors were first defined in a 1980 paper by Patterson and Ditzel [1] and early experimentation with RISC in Berkeley exposed some of the characteristics of this model.
- 
-- Processors were kept as simple as possible with fixed instruction sets or fixed length. 
-- Instructions which process data only operate on registers, not on memory, speeding up and simplifying processing.
-- There are many registers, typically thirty two. This was far in excess of the handful of registers in a typical CISC processor.
-- Instruction decoding is hard wired. CISC processors were so complex, they required microcode in the core to assist decoding.
-- There is a concentration of optimization strategies like pipelines.
+- What is the biggest _integer_ you can describe in a 32 bit register?  
+- What is the biggest _signed integer_ you can describe in a 32 bit register?
 
-The emergent properties of this strategy were that die sizes were much smaller, with fewer transistors in a smaller silicon chip. This resulted in less power consumption, a shorter development time, and for a range of complex reasons, better performance and reduced costs.
- 
-### Advanced RISC Machines (ARM) processors
-Acorn Computer Ltd. (Cambridge, England) developed the first commercial RISC chip in the mid-1980s, the ARM processor [2]. They have an interesting business model. They develop the instruction sets, tools and specifications and then license the production of chips to large silicon foundries. 
+If you don’t remember, do an internet search on those terms now.
 
-ARM is now the most widely used instruction set worldwide. Early chips shipped were 32 bit; but from 2011, a 64 bit version (ARMv8) has been available. The ARM contains all the components for a computer on a single silicon die; it is therefore a _System on a Chip_ or SoC. The instruction set design is what we would expect from RISC. Instructions are simple and most instructions execute in a single clock-cycle. If you want to work with an ARM based system, a Raspberry PI is a cheap and easy solution. You can load a full copy of Linux (the standard is a derivative of Debian Linux). 
+You should understand _scientific notation_, if you are rusty, revise independently. If I want to express the number one thousand in scientific notation, I can write it as 1 x 10^3^. If I want to write 1/1000 in scientific notation I can write it as 1 x 10^-3^. Before we go on, make sure you remember all this! If you don’t remember, do an internet search on those terms now. The principle of scientific notation is that we split a number into a _fraction_ and an _exponent_.
 
-The cost of a board like the Raspberry Pi 5 is about €50, depending on memory etc.
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/table6.jpg">
+<figcaption>Table 6. Floating point examples .</figcaption>
+</figure>
 
-## Microcontrollers
-A vast amount of devices need simple, low power (in terms of both compute and consumption) controllers. Since the late 1970s controllers such as the _Peripheral Interface Controller_ (PIC) have been used for embedded systems and small systems control.  A modern PIC will be programmable with on board flash memory. Typically a PIC will be programmed in Basic, C or C++ and will have simple and widely available tools, code examples and application notes. 
+We can describe very big and very small numbers in the computer in exactly the same way. Imagine we have a 32 bit register to describe numbers; we call this _single precision floating point_. We could store the fraction part of the number in the first 24 bits and the exponent in the last 8. The exponent must be signed so only 7 digits could be used to represent numbers and our exponent could range from -127 to +128 (why?). _Double precision floating point_ uses 64 bits where 53 digits are used for the fraction and 11 bits are used for the exponent. Giving one bit for the sign, that gives us an exponent range of -1022 to + 1023. We can now describe very large and very small numbers.
 
-In machine code, there are a very limited number of instructions (40-80) and they are all fixed in length. There is one accumulator register (W0) which holds the results of all the calculations. Oddly, the RAM used for data is also used for storing temporary values etc. This memory is used like it was a series of registers which map into RAM. Memory is mostly 8 bit although this varies with higher end PICs.
+The floating point examples given here refer to the IEEE version of floating point. There are variations out there and you may find floating point data which does not match the description above!
 
-Programs are stored in a separate memory location, normally in flash RAM, so they are non-volatile. 
+## Co-processors
+But a CPU is a general purpose computing device, it was never designed to cope with these very large numbers. It was designed for _signed integer values_, not floating point. Early PCs did their floating point calculations in a slow and cumbersome way. The chip manufacturers developed special chips specifically to do floating point; these were called co-processors. So for example, the 8086 processor could have an 8087 _co-processor_ installed beside it to enhance its number crunching capabilities.
 
-There is a stack, but it is implemented in the hardware, separately.
+By the 1990s, the chip manufacturers had begun to integrate the co-processor onto the same silicon die as the processor. From the 80486DX onwards, the processor in most personal computers has included the co-processor. If you check the block diagram of any modern CPU, your will find a floating-point unit.
 
-[1] Patterson, D.A. and Ditzel, D.R., 1980. The case for the reduced instruction set computer. ACM SIGARCH Computer Architecture News, 8(6), pp.25-33.
+## Cache
+Once microprocessor clock speeds went faster than 16Mhz (around 1990!) we ran into a performance mismatch; CPUs became faster than main memory. The architecture of main memory is called _Dynamic Random Access Memory_ or DRAM and it has the characteristics of being cheap with a low component count per bit. Each bit is stored as charge on a capacitor, with as little as two transistors controlling the charge. The downside is that DRAM is relatively slow. We could use _Static RAM_ or SRAM, This looks like the memory we built with D Flip Flops, but it has a very high component count per bit and is thus very expensive, takes a great deal of space on the silicon, uses a lot of power, etc.
+There was no easy fix for this, there is still no good solution today. 
 
-[2] Furber, S.B., 2000. ARM system-on-chip architecture. Pearson Education.
+The way we get around the problem is to have a very large, slow, cheap main memory using DRAM. We then have a much smaller fast expensive _cache memory_ using SRAM. Most programmes run sequentially, one instruction following the other. When we have to read an instruction from memory, we could just as easily read a full kilobyte of instructions from main memory to cache. When we need the next instruction from memory, instead of making a slow call to main memory, we can make a call to the much faster cache memory. This is an _instruction cache_.
+Similarly, if we are going to operate on a piece of data, there is a really good chance that the next piece of data we are going to need is right beside the one we just used. We call this _spatial locality_. If we have previously used a piece of data, there is a high chance we will use it again. This is called _temporal locality_. The fact that we can prove both of these things to be statistically predictable gives us the ability to size and design our cache and the algorithms to decide how to operate it. This is a _data cache_. 
+
+When we look for an instruction in cache and it is there, great! We call that a _cache hit_ and it means that we are operating at maximum efficiency. If not, we have a big delay seeking the data from main memory. This process might be 1,000 times slower than getting the information from the cache. We call this a _cache miss_.
+
+We will look at cache memory, DRAM and SRAM in more detail later in the course.
+
+## Pipelining
+In our simple CPU models, an instruction ripples through the registers of the CPU, taking quite a few clock cycles to complete. Why not break up the activities required by an instruction into a number of steps and do each of these steps concurrently? Consider the steps an ordinary instruction might make (Fig 7). 
+
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/table7.jpg">
+<figcaption>Table 7. Flow of a single instruction .</figcaption>
+</figure>
+
+Now suppose we run one instruction after another through the stages. As one as an instruction had finished a stage, the next instruction can use the subsystems required by that stage!
+
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/table8.jpg">
+<figcaption>Table 8. Pipeline flow of a single instruction .</figcaption>
+</figure>
+
+At clock cycle 1
+- Execute instruction 1. The first part of the cycle is the instruction fetch. 
+
+At clock cycle 2
+- Instruction 1 can move to the decoder
+- Execute instruction 1. The first part of the cycle is the instruction fetch. 
+
+At clock cycle 3 
+- Instruction 1 can move to reading operands from memory
+- Instruction 2 can move to the decoder
+- Execute instruction 3. The first part of the cycle is the instruction fetch. 
+
+By the fifth clock cycle, 5 instructions are being simultaneously executed through hardware designed only for single processing. As you can imagine, this can massively enhance performance. A modern Intel processor may have up to 20 stages in its _pipeline_.
+
+## Logical Processors
+Taking this idea a little further, we can get a CPU to act like it is two logical CPUs. Two separate _threads of execution_ can be multiplexed into the same CPU. Intel calls this technology hyperthreading. If you look at task manager on your laptop and check the performance tab, you'll see sockets, cores and logical processors.
+
+- Socket: the physical silicon on the motherboard, a single chip on most laptops, multiple on servers.
+- Core: inside that single chip, we can have multiple CPUs or _cores_ which can share resources on the chip, like cache memory.
+- Logical Processors: using a technology like hyperthreading, give each physical core two threads of execution.
+
+To be clear, two threads of execution into a single core does not give the same performance as two cores. Often it's quoted as a 40% increase in performance. Particularly in the world of virtualization hosts, we need to be cognizant of this. There are times when a hypervisor might be optimised by switching off hyperthreading.
+
+
+
 
 

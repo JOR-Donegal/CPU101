@@ -2,7 +2,7 @@
 
 !!! abstract "Background to General Computing"
 
-My notes do not have prerequisites, you may not have previously studied computer architecture, or programming. You may not have any theoretical background in operating systems. I intend to lightly cover these topics here.
+My notes do not have prerequisites, you may not have previously studied computer architecture, or programming. You may not have any theoretical background in operating systems. I intend to lightly cover these topics here. These notes are an update of notes I wrote for undergrad Computer Arctitecture last from c.2014-2017.
 
 Assisted computation has existed at least from the time of the abacus, but until the era around the second world war, the utility of devices was restricted by the available technologies [1]. This did not prevent advances in the underlying mathematics; names like Boole, Babbage, Lovelace, Napier, Turing, Shannon and Von Neuman are known even to the public and no further examination of their contributions will be made here. From the twentieth century, there was a rapid development in the technologies used for data communications, data storage and processing. Mechanical technologies were used for computing and automation, with relays (an electrical switches) being common in both. Mechanical computing gave way to the first generation of electronic computers based on vacuum tubes or thermionic valves [2]. Preventive maintenance schemes were developed on an ad-hoc basis to keep these valve systems operational, and the first generation of commercial computers were delivered in the early 1950s.
 
