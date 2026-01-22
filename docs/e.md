@@ -1,6 +1,6 @@
 # Processor Architecture
 
-The key component in any computer is the Central Processor Unit or CPU. This does all the calculating and co-ordination for the entire computer.
+The key component in any computer is the _Central Processor Unit_ or CPU. This does all the calculating and co-ordination for the entire computer. A CPU is normally an _integer processor_. To do _floating point calculation_, we need to use tricks or a dedicated _coprocessor_.
 
 In previous notes we have seen how basic memory elements work (latches and flip-flops). On their own, this would not be very useful. But we can combine several memory elements together to create a _register_, a very fast but very small memory store. If we wanted to do a calculation, we could put numbers in two registers and if we knew how to do so, we could add them together and put the result in a third register. 
 

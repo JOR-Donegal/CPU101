@@ -12,7 +12,10 @@ As early as 1949, Werner Jacobi of Siemens AG filed a patent [5] for an amplifie
 
 The ubiquity of computers is something that only emerged in the past generation, and I would argue that the entire field remains immature, we have much to learn.
 
-In these notes, I want to compensate for the misunderstanding many people have technology. Younger people are often referred to his digital natives, they've grown up with technology. But they've grown up as operators of technology. As that technology gets more complex, the level of abstraction that somebody interfaces with is further away from how things actually work inside the box. In the next few pages of notes, I want to go back and work my way forward from the kind of electronic components that have been available since around 1947, as far as (conceptually) how to build a CPU.
+In these notes, I want to compensate for the misunderstanding many people have technology. Younger people are often referred to as _digital natives_, they've grown up with technology. But they've grown up as operators of technology. As that technology gets more complex, the level of abstraction that somebody interfaces with is further away from how things actually work inside the box. In the next few pages of notes, I want to go back and work my way forward from the kind of electronic components that have been available since around 1947, as far as (conceptually) how to build a CPU. This knowledge is a prerequisite for anyone working with computer hardware or with low level computer languages or drivers.
+
+# Recommended Book
+I am going to make an unusual recommendation here. If PC hardware is new to you I am going to suggest a book for practitioners of computer build and repair rather than the sort of book used by academics. __Upgrading and Repairing PCs__ by Scott Mueller has been around for years and is relatively easy reading, if perhaps getting outdated.  
 
 
 

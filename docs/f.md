@@ -38,7 +38,7 @@ We can only read/write one nibble at a time, so we are going to need to be able 
 If we duplicate this column, we can create a new memory address (nibble) of data per column. Only one column should be active at a time, so all the outputs of all the other columns will be zero. If we OR all the outputs for each bit in the nibble, we will only get the output from the enabled column.
 
 <figure>
-<img src = "https://jor-donegal.github.io/CPC101/images/fig22.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig22.png">
 <figcaption>Fig 22. 4x3 memory.</figcaption>
 </figure>
 
@@ -51,14 +51,14 @@ This type of circuit would be called a 2-to-4 line decoder. It would be typical 
 On a 32 bit computer we need 32 address line to address 4,294,967,296 memory locations!
 
 <figure>
-<img src = "https://jor-donegal.github.io/CPC101/images/fig23.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig23.png">
 <figcaption>Fig 23. 2-4 line decoder.</figcaption>
 </figure>
 
 Fig 24 is our finished circuit, including the memory decoder. We only have 3 address available in memory, so we have one spare address enable line.
 
 <figure>
-<img src = "https://jor-donegal.github.io/CPC101/images/fig24.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig24.png">
 <figcaption>Fig 24. 2-4 line decoder.</figcaption>
 </figure>
 
@@ -69,7 +69,7 @@ Most of the memory in a conventional computer is made of fewer components, perha
 As with all things complex, once we understand how memory works and what the terminology is around it, we can create an abstraction to simplify diagrams and make it easier to get an overview of what is going on. A memory block might be shown as something Fig 25.
 
 <figure>
-<img src = "https://jor-donegal.github.io/CPC101/images/fig25.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig25.png">
 <figcaption>Fig 25. BGlock diagram.</figcaption>
 </figure>
 
