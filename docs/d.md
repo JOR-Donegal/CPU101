@@ -5,14 +5,14 @@ We now know how to do basic digital logic and how to create basic memory element
 When we add two binary numbers together, what are the possible outcomes?
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/table1.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/table1.jpg">
 <figcaption>Table 1. Simple addition.</figcaption>
 </figure>
 
 So to add two binary numbers, we will need outputs for a sum and a carry. Let’s do a truth table and figure out how this should work.
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/table2.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/table2.jpg">
 <figcaption>Table 2. Simple addition, truth table.</figcaption>
 </figure>
 
@@ -24,7 +24,7 @@ If you couldn’t figure this out, go back and read the notes on logic gates aga
 A circuit to perform this simple mathematical function is called a _half-adder_ (for reasons we will see later!). I have built a half-adder circuit to test it. I have used two memory elements (D flip flops) to store my A and B values. I have included the XOR and AND gates and have put in some lights so I can see what is going on. I tested it and it works!
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig16.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig16.jpg">
 <figcaption>fig 16. A half adder.</figcaption>
 </figure>
 
