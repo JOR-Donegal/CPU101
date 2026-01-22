@@ -15,7 +15,7 @@ In previous notes, we have built the bones of a simple 4 bit computer. Can we pr
 We know that we could store bits in a register, so building a memory element for a single 4 bit nibble will be quite easy. In fact, the design is that of a _4 bit register_. As previously, we will _clock_ the circuit. When write is enabled, whatever is on the input bus will be copied to the registers. They can then be read at the output bus an unlimited number of times. Once write enabled is switched off, any changes in the input bus will not be copied to the memory element. So now we have a single memory element, good to store a single nibble of data, fig 21. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/CPC101/images/fig21.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig21.png">
 <figcaption>Fig 21. 4 bit register.</figcaption>
 </figure>
 
@@ -70,7 +70,7 @@ As with all things complex, once we understand how memory works and what the ter
 
 <figure>
 <img src = "https://jor-donegal.github.io/CPU101/images/fig25.png">
-<figcaption>Fig 25. BGlock diagram.</figcaption>
+<figcaption>Fig 25. Block diagram.</figcaption>
 </figure>
 
 A final word...
