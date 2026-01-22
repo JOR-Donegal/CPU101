@@ -44,14 +44,14 @@ Our half-adder would work fine for the first calculation, where we can only add 
 I have built a (slightly more complex!) circuit in Cedar Logic to allow for a carry-in. What I have done in this case is to put two half adders together, one adds the two numbers to get the sum, the other adds the carry in to the sum to get a final sum.  Now we can add 1 + 1 + 1 to get 3!
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig17.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig17.jpg">
 <figcaption>fig 17. A full adder.</figcaption>
 </figure>
 
 Take a look at the truth table. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/table3.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/table3.jpg">
 <figcaption>Table 3. Full adder addition, truth table.</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ Finally, do a little reading on _twos complement_ in binary, we can use that tec
 I have created a simple circuit using four full adders which adds two four bit numbers in the normal way as A + B. However if I turn on the subtract switch, it adds one (by connecting to the carry in) and inverts the B bits giving the sum A-B. 
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig18.jpg">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig18.jpg">
 <figcaption>fig 18. A four bit adder.</figcaption>
 </figure>
 

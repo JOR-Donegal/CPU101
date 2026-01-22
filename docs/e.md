@@ -9,14 +9,14 @@ We have also seen how we can use simple circuits to add two numbers together. In
 Before we could make a useful calculating machine, we need some way to tie all of these things together. The pathways which allow parts of a computer to communicate with other parts of the computer are called a bus. It would be nice if we knew when things worked or didn’t work, if we had some status flags to indicate when a calculation fails or returns a number that is too big. The final thing we are going to need is some _control logic_ to hang all these things together and to synchronise everything we want to happen. So here is my design for a simple CPU, (fig19)!
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig19.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig19.png">
 <figcaption>fig 19. An ALU block diagram.</figcaption>
 </figure>
 
 You already know how to build one of these! We know how to make a register and we know how to make an adder/subtractor. So all we really need to do is to hang it all together. Below there is a diagram of a 4 bit adding/subtracting machine. You may think this is not very impressive, but remember, the world’s first micro-processor was an Intel 4004, a 4 bit processor built for early calculators.
 
 <figure>
-<img src = "https://jor-donegal.github.io/Background26/images/fig20.png">
+<img src = "https://jor-donegal.github.io/CPU101/images/fig20.png">
 <figcaption>fig 20. An ALU block diagram.</figcaption>
 </figure>
 
