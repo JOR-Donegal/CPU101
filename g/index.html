@@ -1,0 +1,752 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/g/">
+      
+      
+        <link rel="prev" href="../f/">
+      
+      
+        <link rel="next" href="../h/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Modern CPU Design - CPU Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=AR+One+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"AR One Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modern-cpu-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CPU Design" class="md-header__button md-logo" aria-label="CPU Design" data-md-component="logo">
+      
+  <img src="../images/jor-edu.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CPU Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modern CPU Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CPU Design" class="md-nav__button md-logo" aria-label="CPU Design" data-md-component="logo">
+      
+  <img src="../images/jor-edu.jpg" alt="logo">
+
+    </a>
+    CPU Design
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../b/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calculation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processor Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../f/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logic and Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modern CPU Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../h/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancing the CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternative Processor Paradigms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation and I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modern-cpu-design">Modern CPU Design</h1>
+<p>In previous notes we have seen how basic memory elements work (latches and flip-flops). On their own, this would not be very useful. But we can combine several memory elements together to create a register, a very fast but very small memory store. We have also seen how we can use simple circuits to add two numbers together and we have built and manipulated an Arithmetic Logic Unit or ALU. We have taken a look at main memory and at this stage you should understand how memory stores data in fixed sizes (nibble, bytes or words) in unique addresses. With these elements, we have the basic ingredients, but we are missing the key elements to tie it all together to make a workable computer system. Let’s do that now!</p>
+<p>Firstly, we need to get an idea of how a CPU functions. It’s actually very simple and it’s called the fetch-execute cycle; or sometimes the fetch-decode-execute cycle (Fig 26). A CPU runs like clockwork (literally, everything runs off an electronic pulse called a clock). A computer programme is a list of instructions which the CPU will run through in sequence. </p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig26.png">
+<figcaption>Fig 26. fetch-decode-execute cycle .</figcaption>
+</figure>
+
+<p>Let’s imagine we have a programme with 20 steps, starting at step zero. 
+We need to keep track of where we are in the sequence and to do that we have a special register called the programme counter or PC, initially set at zero (or to the location of the start of the programme). As programmes run sequentially, the PC will normally have an increment function.</p>
+<p>To fetch an instruction from memory, we transfer the contents of the programme counter to another special register, the <em>Memory Address Register</em> or MAR. The MAR can assert an address on to the address bus, which will control where main memory points to. The contents of that memory location will then be available on the data bus. These contents can then be read by a special register, the <em>Memory Buffer Register</em> or MBR.  The contents of the MBR then get transferred to another special register, the <em>Current Instruction Register</em> of CIR. The instruction in the CIR is one of the instructions in the CPUs instruction set. It might be a command like <strong>ADD</strong>, <strong>SUBTRACT</strong>, <strong>LOAD</strong>, etc. We execute this command and then increment the programme counter and run through another cycle. The CPU just keeps doing this……forever!</p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig27.png">
+<figcaption>Fig 27. fetch-decode-execute in blocks .</figcaption>
+</figure>
+
+<p>There is a simple algebra we can use to describe what is going on. We use names to refer to registers and memory and we use names [in square brackets] to refer to the contents of the register or memory. We use arrows to indicate the flow of data. S</p>
+<ul>
+<li>MAR ← [PC]</li>
+<li>PC ← [PC] + 1</li>
+<li>MBR ← [Memory]</li>
+<li>CIR ← MBR</li>
+</ul>
+<p>Next we need to look at how the instruction in the CIR gets executed. </p>
+<p>The CPU needs to be able to “understand” what the instruction means. In reality, there is some <em>decoder logic</em> which looks at the bits in the instruction and activates blocks of digital logic based on what the instruction was. In previous notes, we saw an adder or subtractor. Suppose we said that bit zero of the instruction in the CIR would get hooked up to the subtract button of the ALU. In this case, any instruction with bit 0 = 0 would activate the add functionality. Any instruction with bit zero = 1 would activate the subtract functionality. We can encode a different instruction for every combination of binary digits in the CIR. An eight bit CIR would give us the ability to encode 2<sup>8</sup> or 256 different instructions.</p>
+<p>An instruction to <strong>ADD</strong> or <strong>SUB</strong> (subtract) on its own would have no utility; add what? For most instructions we have to pass the values that we want the instruction to work on, for example, the two numbers we want to add together. The data an instruction will execute against are called <strong>operands</strong>. For example, the ADD instruction 0x00 might be an instruction which means “take the two next values in memory after this instruction and add them together”. Or for a multiply instruction, take the value in a general purpose register and <em>successively add</em> the contents of the accumulator that many times.</p>
+<p>The next question…where do we put the results of a calculation?</p>
+<p>Many processors support the idea of a special register called the <em>accumulator</em>. This is the key register where we perform calculations or place our results.  </p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig28.png">
+<figcaption>Fig 28. ALU support .</figcaption>
+</figure>
+
+<p>Alternatively, some processors have many general purpose registers. An ADD instruction might be specifically designed to take the contents of two specified general purpose registers and put the result in the accumulator. Your smartphone and the ubiquitous Raspberry Pi both use ARM processors, these have 16/32 registers which can be used for almost any purpose. </p>
+<p>We have already looked at simple models of the ALU and there isn’t that much more to add. We know that the ALU has control inputs to determine what functions it will run (e.g. ADD, SUB, MULT, DIV). We also know that it needs inputs to provide it with operands (Fig 29).
+It also has to have a way of getting the results out. In our examples, we show all these separately. In real processors, there is great variation in how this is done. </p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig29.png">
+<figcaption>Fig 29. ALU signals .</figcaption>
+</figure>
+
+<p>In reality, although we might have three internal busses connecting to the ALU, there is only going to be one data bus in the computer, which everything shares. At some point, the data for Bus A and B will have to come into the processor and the data from Bus C will have to be written back to memory. Our control logic orchestrates all this via a device called a <em>multiplexor</em>. On the diagram (Fig 30), why do we show only two select lines?</p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig30.png">
+<figcaption>Fig 30. A 4:1 mux .</figcaption>
+</figure>
+
+<p>The final components we need to have before we can have a working data bus is the buffer or <em>tri-state</em>. Only one device can put information on a data or address bus, if more than one device asserts the bus, there will be chaos! We have a component called a tri-state which is like an electronic switch. When you need to connect a device to the data bus, you enable the tri-states which connects each line in the bus to the device. When you no longer want to connect to the bus, you disable the tri-state. </p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig31.png">
+<figcaption>Fig 31. Tristate .</figcaption>
+</figure>
+
+<p>So now let’s bring together everything we have learned, to sketch a fully working CPU, with external connectivity.</p>
+<figure>
+<img src = "https://jor-donegal.github.io/CPU101/images/fig32.png">
+<figcaption>Fig 32. Summary .</figcaption>
+</figure>
+
+<p>With a real CPU and computer
+- We have a range of busses interconnecting the internal components within the CPU. 
+- The internal data bus within the CPU would allow a vale to be transferred to/from the accumulator to/from almost any register. 
+- The MBR is bi-directional, we can either read data off the data bus or write data to the data bus, based on the address asserted in the MAR.
+- The external data, address and control bus are shared amongst all the components of the computer.
+- Everything is orchestrated by the control unit, both inside the CPU and via the external control bus.
+- There will be buffering between each internal component and the internal data bus. Only one internal component will be able to write to the internal data bus at a time. This is determined by the control unit.
+-   Multiplexor/De-multiplexor blocks will be used to enable multiple devices to share the same busses
+-   There will also be buffering between memory chips and the data bus. Complex encoder/decoder logic allows the correct memory chips to be selected and the correct rows/columns activated.</p>
+<p>That’s it for simple CPU design. We now having a working central processor. Keep in mind though, I have made this as simple as possible, with the minimum components to describe a workable system. We have only scratched the surface. A real CPU has a great deal more complexity and has many more add-ons to increase performance. However, if you can follow what we have covered to date, the add-ons will all make sense! </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../f/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Digital Logic and Memory">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Digital Logic and Memory
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../h/" class="md-footer__link md-footer__link--next" aria-label="Next: Enhancing the CPU">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Enhancing the CPU
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025, John O'Raw
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/john-o-raw-38831a21" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://jor-donegal.github.io/johnoraw.education/" target="_blank" rel="noopener" title="jor-donegal.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
