@@ -13,10 +13,20 @@ theme:
     - content.code.copy
   
   palette:
-      # Light Mode
-    - scheme: default
+    # Darm Mode
+    - scheme: slate
       primary: green
       accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      # Light Mode
+    - scheme: default
+      primary: blue
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -30,7 +40,6 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.caret
   - pymdownx.tilde
-  - tables
 
 extra:
   social:
