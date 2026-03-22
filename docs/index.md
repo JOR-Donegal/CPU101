@@ -20,8 +20,13 @@ I am going to make an unusual recommendation here. If PC hardware is new to you 
 
 ## References
 [1] M. Guarnieri, "The Roots of Automation Before Mechatronics [Historical]," IEEE Industrial Electronics Magazine, vol. 4, no. 2, pp. 42-43, 2010, doi: 10.1109/MIE.2010.936772.
+
 [2] G. R. Jessop, "Developments in thermionic valves during the last sixty years," Journal of the Institution of Electronic and Radio Engineers, vol. 57, no. 2, pp. 81-90, 1987, doi: 10.1049/jiere.1987.0034.
+
 [3] "The transistor — A new amplifier," Electrical Engineering, vol. 67, no. 8, pp. 740-740, 1948, doi: 10.1109/EE.1948.6444253.
+
 [4] "Transistor computers," Journal of the Institution of Electrical Engineers, vol. 2, no. 21, pp. 542-543, 1956, doi: 10.1049/jiee-3.1956.0240.
+
 [5] W. Jacobi, "Halbleiterverstärker," Germany, 1952. [ ] J. Kilby, "Miniaturized Electronic Circuits," USA, 1964.
+
 [6] J. Kilby, "Miniaturized Electronic Circuits," USA, 1964.
